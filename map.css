@@ -1,0 +1,163 @@
+html, body {
+    margin: 0;
+    padding: 5;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+  }
+     
+  #map {
+    width: 100%;    /* Adjust width to your desired size */
+    height: 100%;   /* Adjust height to your desired size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+    border-radius: 8px; /* Optional: rounded corners */
+  }
+
+  #map svg {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+circle {
+    fill-opacity: 60%;
+    stroke: #ffffff; /* Example stroke color */
+    stroke-width: 1px; /* Example stroke width */
+    transition: fill 0.3s ease, stroke 0.3s ease; /* Smooth transition for fill and stroke changes */
+    pointer-events: auto;
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+    );
+    fill: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+        );
+}
+
+:root {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+    );
+
+  }
+  
+  .legend {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin: 1em 0;
+    padding: 0.5em;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .legend > div {
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .legend > div:nth-child(1) {
+    background: var(--color-departures);
+  }
+  
+  .legend > div:nth-child(2) {
+    background: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+        );
+  }
+  
+  .legend > div:nth-child(3) {
+    background: var(--color-arrivals)
+  } 
+  
+h1 {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+    display: flex;
+    align-items: left;
+    gap: 0.5em;
+  }
+  
+header {
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+    width: 100%; /* Make the header span the page horizontally */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+  
+  .time-filter-label {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    margin-left: auto;
+  }
+  
+  input[type="range"] {
+    width: 200px;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: #ccc;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2bc1ea;
+    cursor: pointer;
+  }
+  
+
+  input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #000;
+    cursor: pointer;
+  }
+  
+  #selected-time,
+  #any-time {
+    display: block;
+    text-align: right;
+  }
+  
+  #any-time {
+    color: gray;
+    font-style: italic;
+  }
+  
+  #map {
+    width: 100%;
+    height: 90vh;
+  }
